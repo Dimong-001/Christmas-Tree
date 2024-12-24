@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Christmas Tree</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #00111a, #004466);
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .tree {
+      position: relative;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-bottom: 250px solid #2e8b57;
+    }
+
+    .tree:before,
+    .tree:after {
+      content: '';
+      position: absolute;
+      left: -120px;
+      width: 0;
+      height: 0;
+      border-left: 120px solid transparent;
+      border-right: 120px solid transparent;
+    }
+
+    .tree:before {
+      top: -170px;
+      border-bottom: 200px solid #2e8b57;
+    }
+
+    .tree:after {
+      top: -320px;
+      border-bottom: 170px solid #2e8b57;
+    }
+
+    .tree-lights {
+      position: absolute;
+      top: -340px;
+      left: -120px;
+      width: 240px;
+      height: 440px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .light {
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      background: #ff0000;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+      animation: blink 1.5s infinite alternate;
+    }
+
+    .light:nth-child(odd) {
+      background: #ffeb3b;
+      box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .star {
+      position: absolute;
+      top: -370px;
+      left: -15px;
+      width: 30px;
+      height: 30px;
+      background: gold;
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+
+    .base {
+      position: absolute;
+      bottom: -50px;
+      left: -40px;
+      width: 80px;
+      height: 50px;
+      background: #8b4513;
+    }
+  </style>
+</head>
+<body>
+  <div class="tree">
+    <div class="star"></div>
+    <div class="tree-lights">
+      <!-- Add 30 lights -->
+      ${Array(30).fill('<div class="light"></div>').join('')}
+    </div>
+    <div class="base"></div>
+  </div>
+</body>
+</html>
