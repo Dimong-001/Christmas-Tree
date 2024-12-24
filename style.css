@@ -6,36 +6,24 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: radial-gradient(circle at center, #001a33, #002b4c);
+  background: radial-gradient(circle at center, #001a33, #004466);
   font-family: Arial, sans-serif;
   overflow: hidden;
-}
-
-/* Snowflakes */
-.snow-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
 }
 
 /* Tree Container */
 .tree-container {
   position: relative;
-  width: 300px;
-  height: 500px;
+  width: 400px;
+  height: 700px;
   z-index: 2;
 }
 
 /* Star */
 .star {
   position: absolute;
-  top: -30px;
-  left: calc(50% - 30px); /* Center the star */
+  top: -50px;
+  left: calc(50% - 30px);
   width: 60px;
   height: 60px;
   background: radial-gradient(circle, gold, orange);
@@ -52,45 +40,56 @@ body {
   position: absolute;
   width: 0;
   height: 0;
-  border-left: 150px solid transparent;
-  border-right: 150px solid transparent;
-  left: calc(50% - 150px); /* Center the tree layers */
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  left: calc(50% - 200px);
 }
 
 .layer-1 {
-  border-bottom: 180px solid #228b22;
-  background: linear-gradient(to bottom, #2e8b57, #3cb371);
-  top: 120px;
+  border-bottom: 300px solid #2e8b57;
+  top: 250px;
 }
 
 .layer-2 {
-  border-bottom: 150px solid #3cb371;
-  background: linear-gradient(to bottom, #3cb371, #228b22);
-  top: 80px;
+  border-bottom: 250px solid #3cb371;
+  top: 150px;
 }
 
 .layer-3 {
-  border-bottom: 120px solid #006400;
-  background: linear-gradient(to bottom, #228b22, #006400);
-  top: 40px;
+  border-bottom: 200px solid #006400;
+  top: 50px;
 }
 
 /* Trunk */
 .trunk {
   position: absolute;
   bottom: 0;
-  left: calc(50% - 40px); /* Center the trunk */
+  left: calc(50% - 40px);
   width: 80px;
-  height: 50px;
+  height: 100px;
   background: #8b4513;
   border-radius: 5px;
+}
+
+/* Garland */
+.garland {
+  position: absolute;
+  top: 80px;
+  left: calc(50% - 190px);
+  width: 380px;
+  height: 500px;
+  border-radius: 50%;
+  border: 5px dashed gold;
+  z-index: 1;
+  transform: rotate(20deg);
+  animation: swing 3s infinite alternate ease-in-out;
 }
 
 /* Decorations */
 .decorations {
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 650px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -100,59 +99,74 @@ body {
 
 .bauble {
   position: absolute;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   background: red;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
   animation: glow 1.5s infinite alternate;
 }
 
-.light {
+.star-decoration {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: lightblue;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(173, 216, 230, 0.9);
-  animation: flicker 2s infinite;
+  width: 20px;
+  height: 20px;
+  background: gold;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
-.light:nth-child(even) {
-  background: pink;
-  box-shadow: 0 0 15px rgba(255, 182, 193, 0.9);
+/* Gifts */
+.gifts {
+  position: absolute;
+  bottom: 0;
+  left: 50px;
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
 }
 
-/* Snowflakes Animation */
-.snowflake {
+.gift {
+  width: 60px;
+  height: 60px;
+  background: red;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.gift.red { background: #ff4d4d; }
+.gift.green { background: #4dff4d; }
+.gift.blue { background: #4d4dff; }
+.gift.yellow { background: #ffd700; }
+
+.gift::before {
+  content: '';
   position: absolute;
-  top: -10px;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 100%;
   background: white;
-  opacity: 0.8;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: fall 10s linear infinite;
+  transform: translateX(-50%);
+}
+
+.gift::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 10px;
+  background: white;
+  transform: translateY(-50%);
 }
 
 /* Animations */
-@keyframes glow {
-  0% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes flicker {
-  0%, 100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
 @keyframes sparkle {
   0% {
     transform: scale(1);
@@ -164,58 +178,20 @@ body {
   }
 }
 
-@keyframes fall {
+@keyframes swing {
   0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.8;
+    transform: rotate(20deg);
   }
   100% {
-    transform: translateY(800px) rotate(360deg);
-    opacity: 0.3;
+    transform: rotate(-20deg);
   }
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-  .tree-container {
-    width: 200px;
-    height: 350px;
+@keyframes glow {
+  0% {
+    opacity: 0.8;
   }
-
-  .tree-layer {
-    border-left: 100px solid transparent;
-    border-right: 100px solid transparent;
-    left: calc(50% - 100px);
-  }
-
-  .layer-1 {
-    border-bottom: 140px solid #228b22;
-  }
-
-  .layer-2 {
-    border-bottom: 120px solid #3cb371;
-  }
-
-  .layer-3 {
-    border-bottom: 100px solid #006400;
-  }
-
-  .star {
-    top: -20px;
-    left: calc(50% - 20px);
-    width: 40px;
-    height: 40px;
-  }
-
-  .trunk {
-    width: 50px;
-    height: 30px;
-    left: calc(50% - 25px);
-  }
-
-  .bauble,
-  .light {
-    width: 10px;
-    height: 10px;
+  100% {
+    opacity: 1;
   }
 }
