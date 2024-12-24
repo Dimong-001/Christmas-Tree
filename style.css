@@ -1,0 +1,221 @@
+/* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #001a33, #002b4c);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Snowflakes */
+.snow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Tree Container */
+.tree-container {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  z-index: 2;
+}
+
+/* Star */
+.star {
+  position: absolute;
+  top: -30px;
+  left: calc(50% - 30px); /* Center the star */
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, gold, orange);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  box-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 165, 0, 0.7);
+  animation: sparkle 1.5s infinite alternate;
+}
+
+/* Tree Layers */
+.tree-layer {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  left: calc(50% - 150px); /* Center the tree layers */
+}
+
+.layer-1 {
+  border-bottom: 180px solid #228b22;
+  background: linear-gradient(to bottom, #2e8b57, #3cb371);
+  top: 120px;
+}
+
+.layer-2 {
+  border-bottom: 150px solid #3cb371;
+  background: linear-gradient(to bottom, #3cb371, #228b22);
+  top: 80px;
+}
+
+.layer-3 {
+  border-bottom: 120px solid #006400;
+  background: linear-gradient(to bottom, #228b22, #006400);
+  top: 40px;
+}
+
+/* Trunk */
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 40px); /* Center the trunk */
+  width: 80px;
+  height: 50px;
+  background: #8b4513;
+  border-radius: 5px;
+}
+
+/* Decorations */
+.decorations {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.bauble {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+  animation: glow 1.5s infinite alternate;
+}
+
+.light {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: lightblue;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(173, 216, 230, 0.9);
+  animation: flicker 2s infinite;
+}
+
+.light:nth-child(even) {
+  background: pink;
+  box-shadow: 0 0 15px rgba(255, 182, 193, 0.9);
+}
+
+/* Snowflakes Animation */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  background: white;
+  opacity: 0.8;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: fall 10s linear infinite;
+}
+
+/* Animations */
+@keyframes glow {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(800px) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .tree-container {
+    width: 200px;
+    height: 350px;
+  }
+
+  .tree-layer {
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    left: calc(50% - 100px);
+  }
+
+  .layer-1 {
+    border-bottom: 140px solid #228b22;
+  }
+
+  .layer-2 {
+    border-bottom: 120px solid #3cb371;
+  }
+
+  .layer-3 {
+    border-bottom: 100px solid #006400;
+  }
+
+  .star {
+    top: -20px;
+    left: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+  }
+
+  .trunk {
+    width: 50px;
+    height: 30px;
+    left: calc(50% - 25px);
+  }
+
+  .bauble,
+  .light {
+    width: 10px;
+    height: 10px;
+  }
+}
